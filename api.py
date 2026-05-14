@@ -3,6 +3,7 @@ import numpy as np
 import base64
 import os
 import glob
+import math
 from fastapi import FastAPI, File, UploadFile, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -76,23 +77,77 @@ def process_image(img):
     thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=3)
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
+    # Crear máscara sólida para Distance Transform
+    solid_mask = np.zeros_like(thresh)
+    cv2.drawContours(solid_mask, contours, -1, 255, -1)
+    dist_transform = cv2.distanceTransform(solid_mask, cv2.DIST_L2, 5)
+    
     total_monto = 0.0
     monedas_detalles = []
     
     for c in contours:
         area_contorno = cv2.contourArea(c)
-        if 50000 < area_contorno < 300000:
+        if area_contorno < 50000:
+            continue
+            
+        (x, y), radius = cv2.minEnclosingCircle(c)
+        area_circulo = math.pi * (radius**2)
+        
+        # Si el área es muy grande, son monedas sobrepuestas
+        if area_circulo > 175000:
+            bx, by, bw, bh = cv2.boundingRect(c)
+            pad = 20
+            x1 = max(0, bx - pad)
+            y1 = max(0, by - pad)
+            x2 = min(gray.shape[1], bx + bw + pad)
+            y2 = min(gray.shape[0], by + bh + pad)
+            
+            roi_blur = blur[y1:y2, x1:x2]
+            
+            circles = cv2.HoughCircles(
+                roi_blur, 
+                cv2.HOUGH_GRADIENT, 
+                dp=1.2, 
+                minDist=180, 
+                param1=50, 
+                param2=40, 
+                minRadius=150, 
+                maxRadius=250
+            )
+            
+            if circles is not None:
+                circles = np.round(circles[0, :]).astype("int")
+                for (cx, cy, r) in circles:
+                    global_x = cx + x1
+                    global_y = cy + y1
+                    
+                    # Refinar radio exacto usando distance transform
+                    dt_radius = dist_transform[global_y, global_x]
+                    dt_area = math.pi * (dt_radius**2)
+                    
+                    tipo, valor = clasificar_moneda(dt_area, img, global_x, global_y, dt_radius)
+                    total_monto += valor
+                    monedas_detalles.append(tipo)
+                    
+                    cv2.circle(img_mostrar, (global_x, global_y), int(dt_radius), (0, 255, 0), 3)
+                    cv2.circle(img_mostrar, (global_x, global_y), 7, (0, 0, 255), -1)
+                    cv2.putText(img_mostrar, tipo, (global_x - 40, global_y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+            else:
+                # Fallback si Hough no encuentra
+                tipo, valor = clasificar_moneda(area_circulo, img, x, y, radius)
+                total_monto += valor
+                monedas_detalles.append(tipo)
+                cv2.circle(img_mostrar, (int(x), int(y)), int(radius), (0, 255, 0), 3)
+                cv2.circle(img_mostrar, (int(x), int(y)), 7, (0, 0, 255), -1)
+                cv2.putText(img_mostrar, tipo, (int(x) - 40, int(y) - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+        else:
+            # Moneda normal
             M = cv2.moments(c)
             if M["m00"] != 0:
                 cX = int(M["m10"] / M["m00"])
                 cY = int(M["m01"] / M["m00"])
             else:
-                cX, cY = 0, 0
-            
-            # Use enclosing circle area for robust classification on any background
-            import math
-            (x,y), radius = cv2.minEnclosingCircle(c)
-            area_circulo = math.pi * (radius**2)
+                cX, cY = int(x), int(y)
             
             tipo, valor = clasificar_moneda(area_circulo, img, x, y, radius)
             total_monto += valor
