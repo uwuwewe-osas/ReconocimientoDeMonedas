@@ -15,15 +15,15 @@ os.makedirs("templates", exist_ok=True)
 templates = Jinja2Templates(directory="templates")
 
 def clasificar_moneda(area):
-    if area < 102000:
+    if area < 100000:
         return "10 centimos", 0.1
-    elif area < 111500:
+    elif area < 114000:
         return "2 soles", 2.0
-    elif area < 118500:
+    elif area < 121000:
         return "50 centimos", 0.5
-    elif area < 136000:
+    elif area < 135000:
         return "20 centimos", 0.2
-    elif area < 156000:
+    elif area < 154000:
         return "5 soles", 5.0
     else:
         return "1 sol", 1.0
@@ -65,8 +65,8 @@ def process_image(img):
     monedas_detalles = []
     
     for c in contours:
-        area = cv2.contourArea(c)
-        if 50000 < area < 300000:
+        area_contorno = cv2.contourArea(c)
+        if 50000 < area_contorno < 300000:
             M = cv2.moments(c)
             if M["m00"] != 0:
                 cX = int(M["m10"] / M["m00"])
@@ -74,7 +74,12 @@ def process_image(img):
             else:
                 cX, cY = 0, 0
             
-            tipo, valor = clasificar_moneda(area)
+            # Use enclosing circle area for robust classification on any background
+            import math
+            (x,y), radius = cv2.minEnclosingCircle(c)
+            area_circulo = math.pi * (radius**2)
+            
+            tipo, valor = clasificar_moneda(area_circulo)
             total_monto += valor
             monedas_detalles.append(tipo)
             

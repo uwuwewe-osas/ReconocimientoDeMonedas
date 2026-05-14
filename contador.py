@@ -18,15 +18,15 @@ def clasificar_moneda(area):
     - 5 soles: ~149,628
     - 1 sol: ~163,456
     """
-    if area < 102000:
+    if area < 100000:
         return "10 centimos", 0.1
-    elif area < 111500:
+    elif area < 114000:
         return "2 soles", 2.0
-    elif area < 118500:
+    elif area < 121000:
         return "50 centimos", 0.5
-    elif area < 136000:
+    elif area < 135000:
         return "20 centimos", 0.2
-    elif area < 156000:
+    elif area < 154000:
         return "5 soles", 5.0
     else:
         return "1 sol", 1.0
@@ -92,9 +92,9 @@ def main():
         total_monto = 0.0
         
         for c in contours:
-            area = cv2.contourArea(c)
+            area_contorno = cv2.contourArea(c)
             # Filtrar contornos que no son monedas
-            if 50000 < area < 300000:
+            if 50000 < area_contorno < 300000:
                 # Centroides marcados
                 M = cv2.moments(c)
                 if M["m00"] != 0:
@@ -103,8 +103,13 @@ def main():
                 else:
                     cX, cY = 0, 0
                 
+                # Use enclosing circle area for robust classification on any background
+                import math
+                (x,y), radius = cv2.minEnclosingCircle(c)
+                area_circulo = math.pi * (radius**2)
+                
                 # Clasificar moneda
-                tipo, valor = clasificar_moneda(area)
+                tipo, valor = clasificar_moneda(area_circulo)
                 total_monto += valor
                 
                 # Dibujar contorno y centroide
