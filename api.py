@@ -14,10 +14,25 @@ app = FastAPI(title="Contador de Monedas")
 os.makedirs("templates", exist_ok=True)
 templates = Jinja2Templates(directory="templates")
 
-def clasificar_moneda(area):
+def clasificar_moneda(area, img=None, x=0, y=0, radius=0):
     if area < 100000:
         return "10 centimos", 0.1
     elif area < 114000:
+        if img is not None and radius > 0:
+            import math
+            import numpy as np
+            pts = []
+            for angle in [0, 90, 180, 270]:
+                px = int(x + radius * 0.85 * math.cos(math.radians(angle)))
+                py = int(y + radius * 0.85 * math.sin(math.radians(angle)))
+                if 0 <= px < img.shape[1] and 0 <= py < img.shape[0]:
+                    pts.append(img[py, px])
+            if pts:
+                pts_arr = np.array([pts], dtype=np.uint8)
+                hsv = cv2.cvtColor(pts_arr, cv2.COLOR_BGR2HSV)[0]
+                avg_s = np.mean([p[1] for p in hsv])
+                if avg_s > 40:
+                    return "20 centimos", 0.2
         return "2 soles", 2.0
     elif area < 121000:
         return "50 centimos", 0.5
@@ -79,11 +94,12 @@ def process_image(img):
             (x,y), radius = cv2.minEnclosingCircle(c)
             area_circulo = math.pi * (radius**2)
             
-            tipo, valor = clasificar_moneda(area_circulo)
+            tipo, valor = clasificar_moneda(area_circulo, img, x, y, radius)
             total_monto += valor
             monedas_detalles.append(tipo)
             
-            cv2.drawContours(img_mostrar, [c], -1, (0, 255, 0), 3)
+            # Dibujar círculo perfecto
+            cv2.circle(img_mostrar, (int(x), int(y)), int(radius), (0, 255, 0), 3)
             cv2.circle(img_mostrar, (cX, cY), 7, (0, 0, 255), -1)
             cv2.putText(img_mostrar, tipo, (cX - 40, cY - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     
