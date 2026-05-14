@@ -1,0 +1,450 @@
+monedas (1).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 0
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.40
+
+monedas (2).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 0
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 0.30
+
+monedas (3).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 0.80
+
+monedas (4).jpg
+10 centimos: 2
+20 centimos: 0
+50 centimos: 0
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.20
+
+monedas (5).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 2
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.30
+
+monedas (6).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 0
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 0.40
+
+monedas (7).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 7.00
+
+monedas (8).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 5.90
+
+monedas (9).jpg
+10 centimos: 3
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 1.00
+
+monedas (10).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 0
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.30
+
+monedas (11).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 0
+1 sol: 1
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 8.30
+
+monedas (12).jpg
+10 centimos: 2
+20 centimos: 2
+50 centimos: 0
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.60
+
+monedas (13).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 0
+1 sol: 0
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 2.30
+
+monedas (14).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 0
+1 sol: 1
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 8.30
+
+monedas (15).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 0
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 5.30
+
+monedas (16).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 2
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 2.60
+
+monedas (17).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 2
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.10
+
+monedas (18).jpg
+10 centimos: 2
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 3.70
+
+monedas (19).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 2
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 1.40
+
+monedas (20).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.00
+
+monedas (21).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 0
+2 soles: 2
+5 soles: 0
+TOTAL REAL: 4.60
+
+monedas (22).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 2
+1 sol: 1
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 2.30
+
+monedas (23).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 2
+5 soles: 1
+TOTAL REAL: 10.60
+
+monedas (24).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 3.60
+
+monedas (25).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 0
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 3.10
+
+monedas (26).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 2
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 7.60
+
+monedas (27).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 2
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 4.10
+
+monedas (28).jpg
+10 centimos: 0
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 1.50
+
+monedas (29).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 3
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 8.80
+
+monedas (30).jpg
+10 centimos: 0
+20 centimos: 1
+50 centimos: 0
+1 sol: 2
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 7.20
+
+monedas (31).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 2
+1 sol: 0
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 1.30
+
+monedas (32).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 2
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 4.30
+
+monedas (33).jpg
+10 centimos: 1
+20 centimos: 2
+50 centimos: 1
+1 sol: 0
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 8.00
+
+monedas (34).jpg
+10 centimos: 0
+20 centimos: 3
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 2.10
+
+monedas (35).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 3.60
+
+monedas (36).jpg
+10 centimos: 2
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 0
+TOTAL REAL: 1.70
+
+monedas (37).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 2
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.40
+
+monedas (38).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 0
+1 sol: 1
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 3.10
+
+monedas (39).jpg
+10 centimos: 0
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 5.70
+
+monedas (40).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 1
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 8.80
+
+monedas (41).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 5.80
+
+monedas (42).jpg
+10 centimos: 0
+20 centimos: 2
+50 centimos: 2
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 7.40
+
+monedas (43).jpg
+10 centimos: 2
+20 centimos: 0
+50 centimos: 2
+1 sol: 0
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 8.20
+
+monedas (44).jpg
+10 centimos: 2
+20 centimos: 0
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 2
+TOTAL REAL: 11.70
+
+monedas (45).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 0
+1 sol: 2
+2 soles: 1
+5 soles: 1
+TOTAL REAL: 9.40
+
+monedas (46).jpg
+10 centimos: 1
+20 centimos: 0
+50 centimos: 1
+1 sol: 3
+2 soles: 1
+5 soles: 5
+TOTAL REAL: 10.60
+
+monedas (47).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 2
+2 soles: 0
+5 soles: 2
+TOTAL REAL: 12.80
+
+monedas (48).jpg
+10 centimos: 1
+20 centimos: 1
+50 centimos: 1
+1 sol: 0
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 2.80
+
+monedas (49).jpg
+10 centimos: 3
+20 centimos: 2
+50 centimos: 0
+1 sol: 0
+2 soles: 1
+5 soles: 0
+TOTAL REAL: 2.70
+
+monedas (50).jpg
+10 centimos: 2
+20 centimos: 1
+50 centimos: 1
+1 sol: 1
+2 soles: 0
+5 soles: 1
+TOTAL REAL: 6.90
+

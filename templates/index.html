@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Monedas Peruanas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --surface-color: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --primary: #e04a32;
+            /* Red-orange similar to the banner */
+            --primary-hover: #c9402a;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --banner-bg: linear-gradient(135deg, #e85a38 0%, #c23321 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* Top Navbar */
+        nav {
+            background-color: var(--surface-color);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        /* Banner */
+        .banner {
+            background: var(--banner-bg);
+            color: white;
+            border-radius: 16px;
+            padding: 2.5rem 3rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            width: calc(100% - 2rem);
+            box-shadow: 0 10px 25px rgba(224, 74, 50, 0.2);
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #4ade80;
+            border-radius: 50%;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            width: calc(100% - 2rem);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 1fr 350px;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Controls */
+        .controls-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 250px;
+            background: #f9fafb;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-main);
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        select:focus,
+        input[type="file"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(224, 74, 50, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+        }
+
+        button.btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        button.btn-outline:hover {
+            background: #f3f4f6;
+        }
+
+        /* Image Viewer */
+        .img-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f1f5f9;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #cbd5e1;
+            position: relative;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Sidebar Stats */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .correct {
+            color: var(--success);
+        }
+
+        .incorrect {
+            color: var(--danger);
+        }
+
+        /* Coins List */
+        .coins-list {
+            margin-top: 1rem;
+        }
+
+        .coin-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: transform 0.2s;
+            background: #fafafa;
+        }
+
+        .coin-item:hover {
+            transform: translateX(4px);
+            border-color: #d1d5db;
+        }
+
+        .coin-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .coin-details h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .coin-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loader {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            🪙 <span>Detector</span>Monedas
+        </div>
+        <div style="color: var(--text-muted); font-size: 0.9rem;">
+            OpenCV Processing API
+        </div>
+    </nav>
+
+    <div class="banner">
+        <p
+            style="text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem; opacity: 0.8;">
+            Sistema de Visión Artificial</p>
+        <h1>Análisis de Monedas en Tiempo Real</h1>
+    </div>
+
+    <div class="container">
+        <!-- Main Content -->
+        <main class="card">
+            <div class="card-header">Panel de Control</div>
+
+            <div class="controls-flex">
+                <div class="control-group">
+                    <label for="dataset-select">Analizar Dataset Local</label>
+                    <select id="dataset-select">
+                        <option value="">-- Selecciona una imagen --</option>
+                        {% for img in imagenes %}
+                        <option value="{{ img }}">{{ img }}</option>
+                        {% endfor %}
+                    </select>
+                    <button onclick="analyzeDataset()">Procesar Imagen</button>
+                </div>
+
+                <div class="control-group">
+                    <label for="upload-file">Subir Imagen Externa</label>
+                    <input type="file" id="upload-file" accept="image/*">
+                    <button class="btn-outline" onclick="analyzeUpload()">Subir y Analizar</button>
+                </div>
+            </div>
+
+            <div class="card-header" style="border: none; margin-bottom: 0.5rem;">Visualización</div>
+            <div class="img-container">
+                <div class="loader" id="loader"></div>
+                <div id="placeholder">
+                    <p class="placeholder-text">Sube o selecciona una imagen<br>para ver el resultado aquí.</p>
+                </div>
+                <img id="result-img" class="hidden" src="" alt="Resultado Procesado">
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header">Métricas de Detección</div>
+                <div id="stats-placeholder"
+                    style="color: var(--text-muted); font-size: 0.9rem; text-align: center; padding: 2rem 0;">
+                    Esperando análisis...
+                </div>
+                <div id="stats-content" class="hidden">
+                    <div class="stat-row">
+                        <span class="stat-label">Total Detectado</span>
+                        <span class="stat-value" id="val-detectado">S/ 0.00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Real Esperado</span>
+                        <span class="stat-value" id="val-real" style="color: var(--text-muted)">S/ 0.00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Margen de Error</span>
+                        <span class="stat-value" id="val-error">0.00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Estado</span>
+                        <span class="stat-value" id="val-estado">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Desglose de Monedas</div>
+                <div id="coins-placeholder"
+                    style="color: var(--text-muted); font-size: 0.9rem; text-align: center; padding: 1.5rem 0;">
+                    No hay monedas detectadas aún.
+                </div>
+                <div class="coins-list hidden" id="coins-list">
+                    <!-- Filled via JS -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('result-img').classList.add('hidden');
+            document.getElementById('placeholder').classList.add('hidden');
+            document.getElementById('stats-content').classList.add('hidden');
+            document.getElementById('stats-placeholder').classList.remove('hidden');
+            document.getElementById('coins-list').classList.add('hidden');
+            document.getElementById('coins-placeholder').classList.remove('hidden');
+        }
+
+        function hideLoader() {
+            document.getElementById('loader').style.display = 'none';
+        }
+
+        function displayResults(data) {
+            hideLoader();
+            if (data.error && data.total === undefined) {
+                alert("Error: " + data.error);
+                document.getElementById('placeholder').classList.remove('hidden');
+                return;
+            }
+
+            // Image
+            document.getElementById('result-img').src = "data:image/jpeg;base64," + data.image_base64;
+            document.getElementById('result-img').classList.remove('hidden');
+
+            // Stats
+            document.getElementById('stats-placeholder').classList.add('hidden');
+            document.getElementById('stats-content').classList.remove('hidden');
+
+            document.getElementById('val-detectado').textContent = `S/ ${data.total.toFixed(2)}`;
+            document.getElementById('val-real').textContent = typeof data.real_total === 'number' ? `S/ ${data.real_total.toFixed(2)}` : data.real_total;
+            document.getElementById('val-error').textContent = data.error;
+
+            let estadoEl = document.getElementById('val-estado');
+            if (data.is_correct === true) {
+                estadoEl.textContent = "CORRECTO";
+                estadoEl.className = "stat-value correct";
+            } else if (data.is_correct === false) {
+                estadoEl.textContent = "INCORRECTO";
+                estadoEl.className = "stat-value incorrect";
+            } else {
+                estadoEl.textContent = "N/A";
+                estadoEl.className = "stat-value";
+            }
+
+            // Coins list
+            document.getElementById('coins-placeholder').classList.add('hidden');
+            let coinsList = document.getElementById('coins-list');
+            coinsList.classList.remove('hidden');
+            coinsList.innerHTML = '';
+
+            let count = 1;
+            for (let tipo in data.conteo) {
+                // Determine a short abbreviation for the circle
+                let short = tipo.includes('soles') ? 'S/' : (tipo.includes('sol') ? 'S/' : '¢');
+                let color = tipo.includes('sol') ? '#e04a32' : '#f59e0b';
+
+                coinsList.innerHTML += `
+                    <div class="coin-item">
+                        <div class="coin-icon" style="background: ${color}">${count}</div>
+                        <div class="coin-details">
+                            <h4>${tipo}</h4>
+                            <p>Cantidad: ${data.conteo[tipo]} moneda(s) detectadas</p>
+                        </div>
+                    </div>
+                `;
+                count++;
+            }
+        }
+
+        async function analyzeDataset() {
+            const select = document.getElementById('dataset-select');
+            if (!select.value) return alert('Selecciona una imagen primero');
+
+            showLoader();
+            try {
+                const response = await fetch(`/api/analyze/${select.value}`);
+                const data = await response.json();
+                displayResults(data);
+            } catch (e) {
+                alert("Error de conexión");
+                hideLoader();
+                document.getElementById('placeholder').classList.remove('hidden');
+            }
+        }
+
+        async function analyzeUpload() {
+            const input = document.getElementById('upload-file');
+            if (!input.files.length) return alert('Sube un archivo primero');
+
+            showLoader();
+            const formData = new FormData();
+            formData.append('file', input.files[0]);
+
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                displayResults(data);
+            } catch (e) {
+                alert("Error de conexión");
+                hideLoader();
+                document.getElementById('placeholder').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

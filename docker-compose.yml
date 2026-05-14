@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  monedas_web:
+    build: .
+    ports:
+      - "2210:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
